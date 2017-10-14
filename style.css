@@ -1,0 +1,49 @@
+.body{
+    display: grid;
+    height: 100%;
+    padding:0;
+    margin:0;
+}
+
+video { 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    transform: translateX(-50%) translateY(-50%);
+    background-size: cover;
+    transition: 1s opacity;
+}
+
+.stopfade { 
+   opacity: .5;
+}
+
+.container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin:auto;
+}
+
+.box{
+    width:100%;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.35);
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.19);
+}
+
+.clock{
+    margin-top: 2%;
+    font-size: 30vmin;
+}
+
+.date{
+    margin-top:22%;
+    font-size: 10vmin;
+}
+
