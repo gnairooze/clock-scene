@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,11 @@
     <title>Clock-Scene</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
     <video id="bgvid" playsinline autoplay muted loop>
-        <source src="/media/Clouds 65 Timelapse - Free HD stock footage.mp4" type="video/mp4">
+        <source id="video-src-1" src="/media/Clouds 65 Timelapse - Free HD stock footage.mp4" type="video/mp4">
         <!--<source src="/media/0011B0.mp4" type="video/mp4">-->
         <!--<source src="/media/2216 - Video - Wind over a rice field.mp4" type="video/mp4">-->
         <!--<source src="/media/Beach in Bali.mp4" type="video/mp4">-->
@@ -25,16 +28,48 @@
         <!--<source src="/media/leberb-mchen.mp4" type="video/mp4">-->
         <!--<source src="/media/marguerite I.mp4" type="video/mp4">-->
         <!--<source src="/media/marguerite in meadow.mp4" type="video/mp4">-->
-        <!--<source src="/media/media.txt" type="video/mp4">-->
         <!--<source src="/media/Myanmar Beach.mp4" type="video/mp4">-->
         <!--<source src="/media/sea waves.mp4" type="video/mp4">-->
         <!--<source src="/media/sun reflection.mp4" type="video/mp4">-->
     </video>
 
     <div class="container">
+        <div id="settings">
+            <div id="buttons">
+                <div class="menu-container">
+                    <ul>
+                        <li>Video
+                            <ul id="video-list">
+                                <li><a href="#" data="1">0011B0</a></li>
+                                <li><a href="#" data="2">2216 - Video - Wind over a rice field</a></li>
+                                <li><a href="#" data="3">Beach in Bali</a></li>
+                                <li><a href="#" data="4">Burma Beach evening</a></li>
+                                <li><a href="#" data="5">butterfly pt4</a></li>
+                                <li><a href="#" data="6">Clouds 65 Timelapse - Free HD stock footage</a></li>
+                                <li><a href="#" data="7">ducks</a></li>
+                                <li><a href="#" data="8">flamingos-1</a></li>
+                                <li><a href="#" data="9">flamingos</a></li>
+                                <li><a href="#" data="10">flower with butterfly</a></li>
+                                <li><a href="#" data="11">forsythia</a></li>
+                                <li><a href="#" data="12">japanese cherry bloom III</a></li>
+                                <li><a href="#" data="13">leberb-mchen</a></li>
+                                <li><a href="#" data="14">marguerite I</a></li>
+                                <li><a href="#" data="15">marguerite in meadow</a></li>
+                                <li><a href="#" data="16">Myanmar Beach</a></li>
+                                <li><a href="#" data="17">sea waves</a></li>
+                                <li><a href="#" data="18">sun reflection</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
         <div class="box clock"></div>
         <div class="box date"></div>
+        <input type="hidden" id="selected-video" />
     </div>
+
     <script src="script.js"></script>
 </body>
+
 </html>
