@@ -1,4 +1,27 @@
 document.addEventListener("DOMContentLoaded", function(event) {
+    var videoList = document.getElementById("video-list");
+
+    createMenuItems();
+    
+    function createMenuItems(){
+        for (var index = 0; index < videoData.length; index++) {
+            var videoItem = videoData[index];
+            
+            var element = document.createElement("li");
+
+            var anchor = document.createElement("a");
+            anchor.setAttribute("href","#");
+            anchor.setAttribute("data-code", videoItem.id);
+            anchor.setAttribute("data-file", videoItem.file);
+            anchor.innerHTML = videoItem.name;
+
+            element.appendChild(anchor);
+
+            videoList.appendChild(element);
+        }
+
+    }
+
     function clock() {
         var time = new Date(),
             hours = time.getHours(),
@@ -33,7 +56,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     loadSavedData();
 
-    var videoList = document.getElementById("video-list");
     var listItems = videoList.getElementsByTagName("li");
 
     for (var index = 0; index < listItems.length; index++) {
@@ -43,46 +65,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
 
     document.getElementById("colorData").addEventListener("change", changeColor());
-
-    function getVideoFile(code) {
-        if (code === "1") {
-            return "media/0011B0.mp4";
-        } else if (code === "2") {
-            return "media/2216 - Video - Wind over a rice field.mp4";
-        } else if (code === "3") {
-            return "media/Beach in Bali.mp4";
-        } else if (code === "4") {
-            return "media/Burma Beach evening.mp4";
-        } else if (code === "5") {
-            return "media/butterfly pt4.mp4";
-        } else if (code === "6") {
-            return "media/Clouds 65 Timelapse - Free HD stock footage.mp4";
-        } else if (code === "7") {
-            return "media/ducks.mp4";
-        } else if (code === "8") {
-            return "media/flamingos-1.mp4";
-        } else if (code === "9") {
-            return "media/flamingos.mp4";
-        } else if (code === "10") {
-            return "media/flower with butterfly.mp4";
-        } else if (code === "11") {
-            return "media/forsythia.mp4";
-        } else if (code === "12") {
-            return "media/japanese cherry bloom III.mp4";
-        } else if (code === "13") {
-            return "media/leberb-mchen.mp4";
-        } else if (code === "14") {
-            return "media/marguerite I.mp4";
-        } else if (code === "15") {
-            return "media/marguerite in meadow.mp4";
-        } else if (code === "16") {
-            return "media/Myanmar Beach.mp4";
-        } else if (code === "17") {
-            return "media/sea waves.mp4";
-        } else if (code === "18") {
-            return "media/sun reflection.mp4";
-        }
-    }
 
     function changeVideo(event) {
         return function(event) {
@@ -98,11 +80,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 return;
             }
 
-            var videoCode = anchor.getAttribute("data");
+            var videoFile = anchor.getAttribute("data-file");
 
-            saveVideo(videoCode);
+            saveVideo(videoFile);
 
-           changeToVideo(videoCode);
+           changeToVideo(videoFile);
         }
     }
 
@@ -130,14 +112,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         dateData.setAttribute("style", cssColor);
     }
 
-    function changeToVideo(videoCode){
-        if (!videoCode || videoCode == null || videoCode == "" || videoCode == "undefined") {
-            console.log("videoCode is not set");
-            return;
-        }
-
-        var videoFile = getVideoFile(videoCode);
-
+    function changeToVideo(videoFile){
         if (!videoFile || videoFile == null || videoFile == "" || videoFile == "undefined") {
             console.log("videoFile is not set");
             return;
