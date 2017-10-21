@@ -31,6 +31,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     setInterval(clock, 1000);
 
+    loadSavedData();
+
     var videoList = document.getElementById("video-list");
     var listItems = videoList.getElementsByTagName("li");
 
@@ -39,6 +41,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
         listItem.addEventListener("click", changeVideo());
     }
+
+    document.getElementById("colorData").addEventListener("change", changeColor());
 
     function getVideoFile(code) {
         if (code === "1") {
@@ -96,25 +100,112 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
             var videoCode = anchor.getAttribute("data");
 
-            if (!videoCode || videoCode == null || videoCode == "" || videoCode == "undefined") {
-                console.log("videoCode is not set");
-                return;
-            }
+            saveVideo(videoCode);
 
-            var videoFile = getVideoFile(videoCode);
-
-            if (!videoFile || videoFile == null || videoFile == "" || videoFile == "undefined") {
-                console.log("videoFile is not set");
-                return;
-            }
-
-            var video = document.getElementById("bgvid");
-            var source = document.getElementById("video-src-1");
-
-            source.setAttribute("src", videoFile);
-
-            video.load();
-            video.play();
+           changeToVideo(videoCode);
         }
+    }
+
+    function changeColor(event) {
+        return function(event) {
+            var color = event.target.value;
+
+            saveColor(color);
+
+            changeToColor(color);
+        }
+    }
+
+    function changeToColor(color){
+        if (color == "undefined" || color == null || color == "" || !color) {
+            return;
+        }
+
+        var clockData = document.getElementById("clock");
+        var dateData = document.getElementById("date");
+
+        var cssColor = "color:#" + color + "; opacity: 0.51;";
+
+        clockData.setAttribute("style", cssColor);
+        dateData.setAttribute("style", cssColor);
+    }
+
+    function changeToVideo(videoCode){
+        if (!videoCode || videoCode == null || videoCode == "" || videoCode == "undefined") {
+            console.log("videoCode is not set");
+            return;
+        }
+
+        var videoFile = getVideoFile(videoCode);
+
+        if (!videoFile || videoFile == null || videoFile == "" || videoFile == "undefined") {
+            console.log("videoFile is not set");
+            return;
+        }
+
+        var video = document.getElementById("bgvid");
+        var source = document.getElementById("video-src-1");
+
+        source.setAttribute("src", videoFile);
+
+        video.load();
+        video.play();
+    }
+
+    function saveColor(newColor){
+        if (typeof(Storage) !== "undefined") {
+            window.localStorage.color = newColor;
+        }
+        else
+        {
+            console.log("you cannot save color. html5 stoage not supported.")
+        }
+    }
+
+    function saveVideo(newVideo){
+        if (typeof(Storage) !== "undefined") {
+            window.localStorage.video = newVideo;
+        }
+        else
+        {
+            console.log("you cannot save video. html5 stoage not supported.")
+        }
+    }
+
+    function readSavedColor(){
+        if (typeof(Storage) !== "undefined") {
+            var newColor = "";
+            
+            if (window.localStorage.color !== "undefined" || window.localStorage.color != null || window.localStorage.color != "" || !window.localStorage.color){
+                newColor = window.localStorage.color;
+            }
+
+            return newColor;
+        }
+        else
+        {
+            console.log("you cannot load saved color. html5 stoage not supported.")
+        }
+    }
+
+    function readSavedVideo(){
+        if (typeof(Storage) !== "undefined") {
+            var newVideo = "";
+            
+            if (window.localStorage.video !== "undefined" || window.localStorage.video != null || window.localStorage.video != "" || !window.localStorage.video){
+                newVideo = window.localStorage.video;
+            }
+
+            return newVideo;
+        }
+        else
+        {
+            console.log("you cannot load saved color. html5 stoage not supported.")
+        }
+    }
+
+    function loadSavedData(){
+        changeToColor (readSavedColor());
+        changeToVideo (readSavedVideo());
     }
 });

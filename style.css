@@ -27,6 +27,7 @@ ul li {
     font: 1em Arial, Helvetica, sans-serif;
     display: inline-block;
     margin-right: -4px;
+    margin-left: 20px;
     position: relative;
     padding: 15px 20px;
     background: #fff;
@@ -124,7 +125,7 @@ video {
 }
 
 .clock {
-    top: 2%;
+    margin-top: 3%;
     font-size: 30vmin;
 }
 
