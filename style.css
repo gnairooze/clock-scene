@@ -1,6 +1,4 @@
 body {
-    display: grid;
-    height: 100%;
     padding: 0;
     margin: 0;
 }
@@ -21,13 +19,12 @@ ul {
     -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
     -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    z-index: 100;
 }
 
 ul li {
     font: 1em Arial, Helvetica, sans-serif;
     display: inline-block;
-    margin-right: -4px;
-    margin-left: 20px;
     position: relative;
     padding: 15px 20px;
     background: #fff;
@@ -38,6 +35,7 @@ ul li {
     -ms-transition: all 0.2s;
     -o-transition: all 0.2s;
     transition: all 0.2s;
+    z-index: inherit;
 }
 
 ul li:hover {
@@ -54,7 +52,7 @@ ul li:hover>a {
 ul li ul {
     padding: 0;
     position: absolute;
-    top: 48px;
+    top: 40px;
     left: 0;
     width: 400px;
     -webkit-box-shadow: none;
@@ -68,14 +66,17 @@ ul li ul {
     -ms-transition: opacity 0.2s;
     -o-transition: opacity 0.2s;
     -transition: opacity 0.2s;
+    z-index: inherit;
 }
 
 ul li ul li {
     background: #555;
     opacity: 1;
+    visibility: visible;
     display: block;
     color: #fff;
     text-shadow: 0 -1px 0 #000;
+    z-index: inherit;
 }
 
 ul li ul li:hover {
@@ -122,16 +123,19 @@ video {
     text-align: center;
     color: rgba(255, 255, 255, 0.51);
     text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.19);
+    z-index: 0;
 }
 
 .clock {
     margin-top: 3%;
     font-size: 30vmin;
+    z-index: inherit;
 }
 
 .date {
     margin-top: 20%;
     font-size: 10vmin;
+    z-index: inherit;
 }
 
 #settings {
@@ -141,6 +145,7 @@ video {
     width: 100%;
     min-height: 70px;
     display: block;
+    z-index: 100;
 }
 
 #buttons {
